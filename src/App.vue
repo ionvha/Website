@@ -1,12 +1,19 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/sports">体育</router-link> |
+      <router-link to="/recreation">娱乐</router-link> |
+      <router-link to="/game">游戏</router-link>
     </div>
-    <router-view/>
+    <transition mode='out-in'>
+      <keep-alive>
+        <router-view />
+      </keep-alive>
+    </transition>
   </div>
 </template>
+
+
 
 <style lang="scss">
 #app {
@@ -28,5 +35,21 @@
       color: #42b983;
     }
   }
+}
+
+/* 设置中间动画的公有属性 */
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.8s;
+}
+
+.v-enter {
+  opacity: 0;
+  transform: translate3d(-50%, 0, 0);
+}
+
+.v-leave-to {
+  opacity: 0;
+  transform: translate3d(50%, 0, 0);
 }
 </style>
